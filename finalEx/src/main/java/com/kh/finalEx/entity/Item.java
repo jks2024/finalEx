@@ -16,7 +16,6 @@ import javax.persistence.*;
 @ToString
 public class Item {
     @Id
-    @Column(name="item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;           // 상품 코드
 
@@ -29,7 +28,7 @@ public class Item {
     @Column(nullable = false)
     private int stockNumber;   // 재고수량
 
-    @Lob
+//    @Lob
     @Column(nullable = false)
     private String itemDetail; // 상품 상세 설명
 
