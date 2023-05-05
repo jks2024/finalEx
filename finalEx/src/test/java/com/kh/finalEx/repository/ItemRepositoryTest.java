@@ -2,10 +2,9 @@ package com.kh.finalEx.repository;
 
 import com.kh.finalEx.constant.ItemSellStatus;
 import com.kh.finalEx.entity.Item;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
@@ -13,11 +12,10 @@ import org.springframework.test.context.TestPropertySource;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
 class ItemRepositoryTest {
-
-    private static final Logger logger = LoggerFactory.getLogger(ItemRepositoryTest.class);
 
     @Autowired
     ItemRepository itemRepository;
@@ -79,7 +77,7 @@ class ItemRepositoryTest {
         this.createItemTest();
         List<Item> itemList = itemRepository.findByItemDetail("테스트 상품 상세 설명");
         for(Item item : itemList) {
-            logger.info(item.toString());
+            log.info(item.toString());
         }
     }
     @Test
@@ -88,7 +86,7 @@ class ItemRepositoryTest {
         this.createItemTest();
         List<Item> itemList = itemRepository.findByItemDetailByNative("테스트 상품 상세 설명");
         for(Item item : itemList) {
-            logger.info(item.toString());
+            log.info(item.toString());
         }
     }
 }
