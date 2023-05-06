@@ -2,7 +2,6 @@ package com.kh.finalEx.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,6 +20,5 @@ public class Member {
     @Column(unique = true) //오라클에서 에러 발생 함 (이유 확인 못함)
     private String email;
     @Column(name = "join_time")
-    @CreationTimestamp
     private LocalDateTime joinTime;
 }
