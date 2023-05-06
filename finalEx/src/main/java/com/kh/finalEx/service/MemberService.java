@@ -1,7 +1,7 @@
 package com.kh.finalEx.service;
 
 import com.kh.finalEx.dto.MemberDto;
-import com.kh.finalEx.entity.MemberInfo;
+import com.kh.finalEx.entity.Member;
 import com.kh.finalEx.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 @Service
 @Transactional
@@ -21,12 +20,12 @@ public class MemberService {
     }
 
     public boolean regMember(String userId, String pwd, String name, String mail) {
-        MemberInfo member = new MemberInfo();
+        Member member = new Member();
         member.setUserId(userId);
         member.setPassword(pwd);
         member.setName(name);
         member.setEmail(mail);
-        member.setJoin(LocalDateTime.now());
+        member.setJoinTime(LocalDateTime.now());
         if(regMemberCheck(member)) {
             memberRepository.save(member);
             return true;
@@ -34,25 +33,25 @@ public class MemberService {
         return false;
     }
 
-    public boolean regMemberCheck(MemberInfo member) {
-        MemberInfo findMember = memberRepository.findByEmail(member.getEmail());
+    public boolean regMemberCheck(Member member) {
+        Member findMember = memberRepository.findByEmail(member.getEmail());
         return findMember == null;
     }
     // 로그인 체크
     public boolean loginCheck(String userId, String pwd) {
-        List<MemberInfo> memberInfoList = memberRepository.findByUserIdAndPassword(userId, pwd);
-        for(MemberInfo info : memberInfoList) {
+        List<Member> memberInfoList = memberRepository.findByUserIdAndPassword(userId, pwd);
+        for(Member info : memberInfoList) {
             return true;
         }
         return false;
     }
     // 회원 조회
     public List<MemberDto> getMemberList() {
-        List<MemberInfo> memberInfoList;
+        List<Member> memberInfoList;
         memberInfoList = memberRepository.findAll();
 
         List<MemberDto> memberDtos = new ArrayList<>();
-        for(MemberInfo info : memberInfoList) {
+        for(Member info : memberInfoList) {
             MemberDto memberDto = new MemberDto();
             memberDto.setUser(info.getUserId());
             memberDto.setPwd(info.getPassword());
@@ -64,7 +63,7 @@ public class MemberService {
     }
     // 회원 탈퇴
     public boolean delMember(String userId) {
-        MemberInfo memberInfo = memberRepository.findByUserId(userId);
+        Member memberInfo = memberRepository.findByUserId(userId);
         if(memberInfo != null) {
             memberRepository.delete(memberInfo);
             return true;
