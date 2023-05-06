@@ -47,20 +47,28 @@ public class MemberService {
         return false;
     }
     // 회원 조회
-    public List<MemberDto> getMember(String userId) {
+    public List<MemberDto> getMemberList() {
         List<MemberInfo> memberInfoList;
-        if(userId.equals("ALL")) {
-            memberInfoList = memberRepository.findAll();
-        } else {
-            memberInfoList = memberRepository.findByUserId(userId);
-        }
+        memberInfoList = memberRepository.findAll();
 
         List<MemberDto> memberDtos = new ArrayList<>();
         for(MemberInfo info : memberInfoList) {
             MemberDto memberDto = new MemberDto();
             memberDto.setUser(info.getUserId());
             memberDto.setPwd(info.getPassword());
+            memberDto.setName(info.getName());
+            memberDto.setEmail(info.getEmail());
+            memberDtos.add(memberDto);
         }
         return memberDtos;
+    }
+    // 회원 탈퇴
+    public boolean delMember(String userId) {
+        MemberInfo memberInfo = memberRepository.findByUserId(userId);
+        if(memberInfo != null) {
+            memberRepository.delete(memberInfo);
+            return true;
+        }
+        return false;
     }
 }

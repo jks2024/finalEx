@@ -44,8 +44,19 @@ public class MemberController {
     @GetMapping("/member")
     public ResponseEntity<List<MemberDto>> memberList(@RequestParam String userId) {
         log.info("USER ID : " + userId);
-        List<MemberDto> list = memberService.getMember(userId);
+        List<MemberDto> list = null;
+        if(userId.equals("ALL")) {
+           list = memberService.getMemberList();
+        }
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+    // POST : 회원 탈퇴
+    @PostMapping("/del")
+    public ResponseEntity<Boolean> memberDelete(@RequestBody Map<String, String> delData) {
+        String id = delData.get("id");
+        boolean result = memberService.delMember(id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
 
 }
