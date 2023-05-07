@@ -77,7 +77,7 @@ class ItemRepositoryTest {
         this.createItemTest();
         List<Item> itemList = itemRepository.findByItemDetail("테스트 상품 상세 설명");
         for(Item item : itemList) {
-            log.info(item.toString());
+            System.out.println(item.toString());
         }
     }
     @Test
@@ -86,7 +86,7 @@ class ItemRepositoryTest {
         this.createItemTest();
         List<Item> itemList = itemRepository.findByItemDetailByNative("테스트 상품 상세 설명");
         for(Item item : itemList) {
-            log.info(item.toString());
+            System.out.println(item.toString());
         }
     }
 }

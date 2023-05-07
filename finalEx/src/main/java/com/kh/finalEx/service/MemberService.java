@@ -3,6 +3,7 @@ package com.kh.finalEx.service;
 import com.kh.finalEx.dto.MemberDto;
 import com.kh.finalEx.entity.Member;
 import com.kh.finalEx.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -13,12 +14,11 @@ import java.util.List;
 @Service
 @Transactional
 @Slf4j
+@RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
+    // 회원 가입
     public boolean regMember(String userId, String pwd, String name, String mail) {
         Member member = new Member();
         member.setUserId(userId);
