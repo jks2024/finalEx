@@ -13,13 +13,14 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @Slf4j
+@RequestMapping("/member")
 public class MemberController {
     MemberService memberService;
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
     // POST : 회원 가입
-    @PostMapping("/new")
+    @PostMapping(value="/new")
     public ResponseEntity<Boolean> memberRegister(@RequestBody Map<String, String> regData) {
         String id = regData.get("id");
         String pwd = regData.get("pwd");
@@ -29,7 +30,7 @@ public class MemberController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
     // POST : 로그인 체크
-    @PostMapping("/login")
+    @PostMapping(value="/login")
     public ResponseEntity<Boolean> memberLogin(@RequestBody Map<String, String> loginData) {
         String user = loginData.get("user");
         String pwd = loginData.get("pwd");
@@ -41,7 +42,7 @@ public class MemberController {
         }
     }
     // GET : 회원 조회
-    @GetMapping("/member")
+    @GetMapping(value="/member")
     public ResponseEntity<List<MemberDto>> memberList(@RequestParam String userId) {
         log.info("USER ID : " + userId);
         List<MemberDto> list = null;
@@ -51,7 +52,7 @@ public class MemberController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
     // POST : 회원 탈퇴
-    @PostMapping("/del")
+    @PostMapping(value="/del")
     public ResponseEntity<Boolean> memberDelete(@RequestBody Map<String, String> delData) {
         String id = delData.get("id");
         boolean result = memberService.delMember(id);

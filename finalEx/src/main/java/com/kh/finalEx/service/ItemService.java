@@ -1,13 +1,17 @@
 package com.kh.finalEx.service;
 
 import com.kh.finalEx.constant.ItemSellStatus;
+import com.kh.finalEx.dto.ItemDto;
+import com.kh.finalEx.dto.MemberDto;
 import com.kh.finalEx.entity.Item;
+import com.kh.finalEx.entity.Member;
 import com.kh.finalEx.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,5 +36,21 @@ public class ItemService {
 //        List<Item> items = itemRepository.findByItemNm(item.getItemNm());
 //        return  true;
 //    }
+
+    // 상품 조회
+    public List<ItemDto> getItemList() {
+        List<Item> itemList;
+        itemList = itemRepository.findAll();
+        List<ItemDto> itemDtos = new ArrayList<>();
+        for (Item item : itemList) {
+            ItemDto itemDto = new ItemDto();
+            itemDto.setItemNm(item.getItemNm());
+            itemDto.setPrice(item.getPrice());
+            itemDto.setItemDetail(item.getItemDetail());
+            itemDtos.add(itemDto);
+        }
+        return itemDtos;
+    }
+
 
 }

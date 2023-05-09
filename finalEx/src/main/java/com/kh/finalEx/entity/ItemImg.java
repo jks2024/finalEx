@@ -16,7 +16,8 @@ public class ItemImg {
     private String imgName;
     private String oriImgName;
     private String imgUrl;
-    private String repimgYn;
+    private String repImgYn;
+    // 상품 엔티티와 다대일 단방향 관계로 매핑합니다. 지연 로딩을 설정하여 매핑된 상품 엔티티 정보가 필요할 경우 데이터를 조회
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;

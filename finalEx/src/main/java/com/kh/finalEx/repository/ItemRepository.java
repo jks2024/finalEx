@@ -1,6 +1,7 @@
 package com.kh.finalEx.repository;
 
 import com.kh.finalEx.entity.Item;
+import com.kh.finalEx.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +18,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query(value="select * from item i where i.item_detail like %:itemDetail% order by i.price desc",
             nativeQuery = true)
     List<Item> findByItemDetailByNative(@Param("itemDetail") String itemDetail);
+    List<Item> findAll();
 }
