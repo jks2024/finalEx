@@ -9,5 +9,4 @@ public class ItemImgDto {
     private String imgName;
     private String imgUrl;
     private String repImgYn;
-
 }

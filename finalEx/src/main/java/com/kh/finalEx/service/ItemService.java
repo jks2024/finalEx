@@ -29,7 +29,9 @@ public class ItemService {
         item.setItemDetail(detail);
         item.setItemSellStatus(status);
         item.setStockNumber(stock);
-        itemRepository.save(item);
+        Item saveItem = itemRepository.save(item);
+        log.info("저장된 상품 이름 : " + saveItem.getItemNm());
+
         return true;
     }
 //    public boolean creatItemCheck(Item item) {
