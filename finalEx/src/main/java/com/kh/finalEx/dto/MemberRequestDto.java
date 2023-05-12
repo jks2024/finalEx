@@ -22,8 +22,7 @@ public class MemberRequestDto {
     public Member toMember(PasswordEncoder passwordEncoder) {
         return Member.builder()
                 .userId(userId)
-      //          .password(passwordEncoder.encode(password))
-                .password(password)
+                .password(passwordEncoder.encode(password))
                 .name(name)
                 .email(email)
                 .authority(Authority.ROLE_USER)
