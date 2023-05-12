@@ -58,6 +58,4 @@ public class MemberController {
         boolean result = memberService.delMember(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-
-
 }

@@ -5,11 +5,13 @@ import com.kh.finalEx.entity.Member;
 import com.kh.finalEx.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -17,6 +19,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
+
+
+
+
 
     // 회원 가입
     public boolean regMember(String userId, String pwd, String name, String mail) {
@@ -34,8 +41,8 @@ public class MemberService {
     }
 
     public boolean regMemberCheck(Member member) {
-        Member findMember = memberRepository.findByEmail(member.getEmail());
-        return findMember == null;
+        Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
+        return findMember.isEmpty();
     }
     // 로그인 체크
     public boolean loginCheck(String userId, String pwd) {

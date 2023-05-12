@@ -22,7 +22,8 @@ public class MemberRequestDto {
     public Member toMember(PasswordEncoder passwordEncoder) {
         return Member.builder()
                 .userId(userId)
-                .password(passwordEncoder.encode(password))
+      //          .password(passwordEncoder.encode(password))
+                .password(password)
                 .name(name)
                 .email(email)
                 .authority(Authority.ROLE_USER)
@@ -32,6 +33,4 @@ public class MemberRequestDto {
     public UsernamePasswordAuthenticationToken toAuthentication() {
         return new UsernamePasswordAuthenticationToken(userId, password);
     }
-
-
 }

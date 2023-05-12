@@ -42,7 +42,7 @@ public class TokenProvider {
 
         Date tokenExpiresIn  = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
 
-        System.out.println(tokenExpiresIn);
+        System.out.println("토큰 종료 일 : " + tokenExpiresIn);
 
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
@@ -69,6 +69,7 @@ public class TokenProvider {
                         .collect(Collectors.toList());
 
         UserDetails principal = new User(claims.getSubject(), "", authorities);
+
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
 

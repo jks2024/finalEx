@@ -1,16 +1,15 @@
 package com.kh.finalEx.entity;
 import com.kh.finalEx.constant.Authority;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 @Table(name = "member")
 @Getter @Setter @ToString
+@NoArgsConstructor
 public class Member {
     @Id
     @Column(name="member_id")
@@ -27,7 +26,6 @@ public class Member {
 
     @Column(name = "join_time")
     private LocalDateTime joinTime;
-    public Member(){}
 
     @Builder
     public Member(Long id, String userId, String name, String password, String email, Authority authority, LocalDateTime joinTime) {
