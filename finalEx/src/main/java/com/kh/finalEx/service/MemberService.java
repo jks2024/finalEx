@@ -19,11 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-    private final PasswordEncoder passwordEncoder;
-
-
-
-
 
     // 회원 가입
     public boolean regMember(String userId, String pwd, String name, String mail) {

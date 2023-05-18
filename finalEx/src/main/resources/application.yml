@@ -21,7 +21,7 @@
 #springboot.jwt.secret=flature!@#
 
 server:
-  port: 8111
+  port: 8222
 
 spring:
   datasource:
