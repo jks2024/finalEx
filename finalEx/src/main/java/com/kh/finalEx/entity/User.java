@@ -33,7 +33,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table
 public class User implements UserDetails {
 
-    private static final long serialVersionUID = 6014984039564979072L;
+//    private static final long serialVersionUID = 6014984039564979072L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

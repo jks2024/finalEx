@@ -84,7 +84,11 @@ public class JwtTokenProvider {
     // JWT 토큰에서 회원 구별 정보 추출
     public String getUsername(String token) {
         log.info("[getUsername] 토큰 기반 회원 구별 정보 추출");
-        String info = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody()
+        String info = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
                 .getSubject();
         log.info("[getUsername] 토큰 기반 회원 구별 정보 추출 완료, info : {}", info);
         return info;

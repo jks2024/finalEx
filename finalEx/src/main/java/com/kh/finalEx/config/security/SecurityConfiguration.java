@@ -34,12 +34,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests() // 리퀘스트에 대한 사용권한 체크
                 .antMatchers("/sign-api/sign-in", "/sign-api/sign-up",
                         "/sign-api/exception").permitAll() // 가입 및 로그인 주소는 허용
-                .antMatchers(HttpMethod.GET, "/product/**").permitAll() // product로 시작하는 Get 요청은 허용
-
+                .antMatchers("/member/**").permitAll() // member로 시작하는 모든 요청은 허용
                 .antMatchers("**exception**").permitAll()
 
                 .anyRequest().hasRole("ADMIN") // 나머지 요청은 인증된 ADMIN만 접근 가능
-
                 .and()
                 .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())
                 .and()
