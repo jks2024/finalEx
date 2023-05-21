@@ -43,10 +43,8 @@ public class JwtTokenProvider {
     @PostConstruct
     protected void init() {
         log.info("[init] JwtTokenProvider 내 secretKey 초기화 시작");
-        System.out.println(secretKey);
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes(StandardCharsets.UTF_8));
         System.out.println(secretKey);
-
         log.info("[init] JwtTokenProvider 내 secretKey 초기화 완료");
     }
 

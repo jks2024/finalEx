@@ -13,9 +13,7 @@ import lombok.ToString;
 public class SignUpResultDto {
 
     private boolean success;
-
     private int code;
-
     private String msg;
 
 }
