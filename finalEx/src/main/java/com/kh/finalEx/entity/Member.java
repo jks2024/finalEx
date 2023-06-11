@@ -1,4 +1,5 @@
 package com.kh.finalEx.entity;
+import com.kh.finalEx.constant.Authority;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,10 +18,19 @@ public class Member {
     private String userId;
     private String name;
     private String password;
-    @Column(unique = true) //오라클에서 에러 발생 함 (이유 확인 못함)
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    private Authority authority;
 
-    @Column(name = "join_time")
-    private LocalDateTime joinTime;
+    @Builder
+    public Member(String user, String email, String password, String name, Authority authority) {
+        this.userId = user;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.authority = authority;
+    }
+
 }
+ 

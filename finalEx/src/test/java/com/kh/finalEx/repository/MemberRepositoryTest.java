@@ -26,7 +26,6 @@ class MemberRepositoryTest {
             member.setPassword("SPHB8250");
             member.setName("곰돌이사육사" + i);
             member.setEmail("jks2024@gmail.com");
-            member.setJoinTime(LocalDateTime.now());
             memberRepository.save(member);
         }
     }
